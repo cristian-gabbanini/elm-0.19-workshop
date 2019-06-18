@@ -570,8 +570,16 @@ toTagList tagString =
 
        List.filter (\str -> str == "foo") listOfStrings
     -}
+    let
+        isEmpty str =
+            String.length str == 0
+
+        isNotEmpty str =
+            not (isEmpty str)
+    in
     String.split " " tagString
         |> List.map String.trim
+        |> List.filter isNotEmpty
 
 
 edit : Slug -> TrimmedForm -> Cred -> Http.Request (Article Full)
